@@ -1,3 +1,3 @@
 # Bulls-and-Cows
-Amir adar 
-Lior habani
+Amir adar 302308168 
+Lior habani 305257347
