@@ -5,8 +5,9 @@
 #include <string>
 #include "SmartGuesser.hpp"
 
-using namespace bullpgia;
+using std::string;
 using namespace std;
+using namespace bullpgia;
 
 void SmartGuesser::startNewGame(uint length) {
         my_list.clear();
@@ -15,12 +16,12 @@ void SmartGuesser::startNewGame(uint length) {
 }
 
 string SmartGuesser::guess() {
-        list<string>::iterator iter = my_list.begin();
+        std::list<string>::iterator iter = my_list.begin();
         if(my_list.size() == 1){
                 my_guess = *my_list.begin();
         }
         else if(my_list.size()>1) {
-                advance(iter, rand()%(my_list.size()-1));
+                std::advance(iter, rand()%(my_list.size()-1));
                 my_guess = *iter;
         }
         return my_guess;

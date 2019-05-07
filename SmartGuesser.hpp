@@ -2,14 +2,13 @@
 #include "calculate.hpp"
 #include "Guesser.hpp"
 #include <list>
-#include <string>
 
 namespace bullpgia {
 class SmartGuesser : public bullpgia :: Guesser{
 private:
 
   list<string> my_list;
-  string my_guess;
+  std::string my_guess;
 
 public:
 

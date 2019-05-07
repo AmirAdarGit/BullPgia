@@ -1,7 +1,9 @@
-
 #include <string>
 #include "iostream"
+
+using std::string;
 using namespace std;
+
 namespace bullpgia {
 std::string bullpgia::calculateBullAndPgia(string choice,string guess)
 {

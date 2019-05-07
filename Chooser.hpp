@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <stdlib.h>
-#include <string>
+using std::string;
 
 namespace bullpgia {
 class Chooser {
