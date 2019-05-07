@@ -1,2 +1,3 @@
 # Bulls-and-Cows
-Noami Tsabari && Or Shemesh
+Amir adar 
+Lior habani

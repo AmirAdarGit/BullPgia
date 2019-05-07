@@ -1,61 +1,67 @@
+
+#include "SmartGuesser.hpp"
 #include <iostream>
 #include <iomanip>
-#include <math.h>
 #include <sstream>
+#include <math.h>
 #include <string>
-#include "SmartGuesser.hpp"
-
 using std::string;
 using namespace std;
 using namespace bullpgia;
 
-void SmartGuesser::startNewGame(uint length) {
-        my_list.clear();
-        length=length;
-        allOptions();
-}
+
+
 
 string SmartGuesser::guess() {
-        std::list<string>::iterator iter = my_list.begin();
-        if(my_list.size() == 1){
-                my_guess = *my_list.begin();
+        std::list<std::string>::iterator it = myList.begin();
+         if(myList.size()==0){
+              build_the_List();       
         }
-        else if(my_list.size()>1) {
-                std::advance(iter, rand()%(my_list.size()-1));
-                my_guess = *iter;
+        else if(myList.size()==1){
+                this->myGuess = *myList.begin();
         }
-        return my_guess;
+        if(myList.size()>1) {
+                std::advance(it, rand()%(myList.size()-1));
+                this->myGuess = *it;
+        }
+      
+        return myGuess;
 }
-
-
- void SmartGuesser::allOptions(){
-        int size_of_list = pow(10,length);
-        for (size_t i = 0; i < size_of_list; i++) {
+//http://www.cplusplus.com/reference/list/list/insert/
+//http://www.cplusplus.com/reference/iomanip/setfill/
+ void SmartGuesser::build_the_List(){
+        int size= pow(10,length);
+        for (size_t i = 0; i < size; i++) {
                 stringstream stream;
-                stream << setw(length) << setfill('0') << i;
-                string temp = stream.str();
-                my_list.push_front(temp);
+                stream << setw(length) << setfill('0') << i;  
+                string s = stream.str();
+                myList.push_front(s); 
         }
  }
 
-void SmartGuesser::learn(string results){
-        deleteElement(results);
+
+void SmartGuesser::startNewGame(uint length) {
+        myList.clear();
+        this->length=length;
+        build_the_List();
 }
 
-void SmartGuesser::deleteElement(string ans){
-        list<string>::iterator iter;
-        for(iter = my_list.begin() ; iter != my_list.end() ; )
+void SmartGuesser::learn(string results)
+
+{
+        remove_element_from_list(results);
+}
+void SmartGuesser::remove_element_from_list(string results){
+        list<string>::iterator itr;
+        for(itr = myList.begin(); itr != myList.end();)
         {
-                string back = calculateBullAndPgia(*iter,my_guess);
-                if(back.compare(ans) != 0) {
-                        iter=my_list.erase(iter);
+                string back=calculateBullAndPgia(*itr,myGuess);
+                if(back.compare(results)!=0) {
+                        itr=myList.erase(itr);
                 }
                 else{
-                        ++iter;
+                        ++itr;
                 }
         }
-      my_list.remove(my_guess);
+      this-> myList.remove(myGuess);
 }
-
-
-
